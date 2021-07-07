@@ -1,5 +1,5 @@
 variable "modules" {
-  type        = list(map(list(map(any))))
+  type        = list(map(any))
   description = "A list of modules that contain outputs that will be merged together into a single stream of outputs"
 }
 
