@@ -5,7 +5,7 @@ variable "modules" {
 
 locals {
   all_keys_deep = [for m in var.modules : keys(m)]
-  all_keys      = setunion(local.all_keys_deep...)
+  all_keys      = length(local.all_keys_deep) > 0 ? setunion(local.all_keys_deep...) : []
   outputs_deep  = { for k in local.all_keys : k => [for m in var.modules : lookup(m, k, null)] }
   outputs       = { for k, v in local.outputs_deep : k => flatten([for x in v : x if x != null]) }
 }
